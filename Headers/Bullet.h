@@ -26,6 +26,7 @@ public:
     int getX();
     int getY();
     sf::Sprite getSprite(); //retorna el sprite del jugador
+    bool outOfBounds();
     //Operadores
     void* operator new(size_t size);
     void operator delete(void* p);
