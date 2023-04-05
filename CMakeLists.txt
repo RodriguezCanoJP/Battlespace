@@ -3,7 +3,7 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(untitled main.cpp Juego.cpp Juego.h)
+add_executable(untitled main.cpp Juego.cpp Juego.h Jugador.cpp Jugador.h)
 
 target_include_directories(untitled PUBLIC /usr/include/SFML)
 target_link_libraries(untitled sfml-system sfml-window sfml-graphics)
