@@ -33,6 +33,6 @@ void BulletCollector::liberar() {
  }
 }
 
-void BulletCollector::lista_punteros() {
-
+void* BulletCollector::lista_punteros() {
+    return punteros[0];
 }
