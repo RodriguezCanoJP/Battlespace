@@ -25,7 +25,9 @@ public:
      * @param y posicion actual de la nave
      * @param velocity velocidad en el eje x
      */
-    void update(int y, int velocity);
+    void setPath(int y);
+
+    void setPos(float velocity);
 
     /**
      * Retorna la posicion en el eje x

@@ -5,8 +5,10 @@
 #include "Headers/Bullet.h"
 
 Bullet::Bullet() {
-    texture.loadFromFile("/home/juanpablo/CLionProjects/Battlespace/Images/Bullet.png");
+    texture.loadFromFile("/home/juanpablo/CLionProjects/Battlespace/Images/bullet.png");
     sprite.setTexture(texture);
+    x = 60;
+    y = 0;
 }
 
 Bullet::~Bullet() {
@@ -15,12 +17,13 @@ Bullet::~Bullet() {
 
 BulletCollector Bullet::collector;
 
-void Bullet::update(int y, int velocity) {
+void Bullet::setPath(int y){
     this->y = y;
-    while(!outOfBounds()){
-        this->x += velocity;
-        sprite.setPosition(this->x, this->y);
-    }
+}
+
+void Bullet::setPos(float velocity) {
+    this->x += velocity;
+    this->sprite.setPosition(this->x, this->y);
 }
 
 int Bullet::getX() {

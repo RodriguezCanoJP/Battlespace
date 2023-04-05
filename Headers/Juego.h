@@ -18,7 +18,7 @@ private:
     Jugador jugador; ///< Instancia de la nave del jugador
     float velJugador; ///< velocidad de la nave
     int bullet_qty; ///< cantidad de balas disponibles
-    int bullet_vel; ///< velocidad de las balas
+    float bullet_vel; ///< velocidad de las balas
     std::vector <Bullet*> bullets_disponibles; ///< vector con objetos Bullet disponibles
     std::vector <Bullet*> bullets_usadas; ///< vector con objetos Bullet disparadas
 
