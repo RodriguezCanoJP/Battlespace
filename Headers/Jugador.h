@@ -8,20 +8,38 @@
 
 class Jugador{
 protected:
-    //Sprite
-    sf::Texture texture;
-    sf::Sprite sprite;
-    //Posiciones
-    int x;
-    int y;
+    sf::Texture texture; ///< textura del sprite
+    sf::Sprite sprite; ///< objeto sprite
+    int x; ///< posicion en el eje x
+    int y; ///< posicion en el eje y
 public:
-    //Destructor
+    ///Constructor/Destructor
     Jugador();
     ~Jugador();
-    //Funciones publicas
+
+    /**
+     * Actualiza la posicion de la nave del jugador
+     * @param up cantidad de movimiento hacia arriba
+     * @param down cantidad de movimiento hacia abajo
+     */
     void update(int up, int down);
+
+    /**
+     * Retorna la posicion del jugador en el eje x
+     * @return int x
+     */
     int getX();
+
+    /**
+     * Retorna la posicion del jugador en el eje y
+     * @return int y
+     */
     int getY();
+
+    /**
+     * Retorna el sprite del objeto de jugador
+     * @return Sprite sprite
+     */
     sf::Sprite getSprite(); //retorna el sprite del jugador
 };
 

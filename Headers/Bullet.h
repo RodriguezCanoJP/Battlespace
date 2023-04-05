@@ -9,25 +9,49 @@
 
 class Bullet{
 protected:
-    //Sprite
-    sf::Texture texture;
-    sf::Sprite sprite;
-    //Posiciones
-    int x;
-    int y;
-    int dmg;
+    sf::Texture texture; ///< textura del sprite
+    sf::Sprite sprite; ///< objeto sprite
+    int x; ///< posicion en el eje x
+    int y; ///< posicion en el eje y
+    int dmg; ///< dano de la bala
 public:
     static BulletCollector collector;
-    //Destructor
+    ///Constructor/Destructor
     Bullet();
     ~Bullet();
-    //Funciones publicas
+
+    /**
+     * Actualiza la posicion de la bala
+     * @param y posicion actual de la nave
+     * @param velocity velocidad en el eje x
+     */
     void update(int y, int velocity);
+
+    /**
+     * Retorna la posicion en el eje x
+     * @return int x
+     */
     int getX();
+
+    /**
+     * Retorna la posicion en el eje y
+     * @return int y
+     */
     int getY();
-    sf::Sprite getSprite(); //retorna el sprite del jugador
+
+    /**
+     * Retorna el sprite del jugador
+     * @return Sprte sprite
+     */
+    sf::Sprite getSprite();
+
+    /**
+     * Consulta si la bala esta fuera de la pantalla
+     * @return bool
+     */
     bool outOfBounds();
-    //Operadores
+
+    ///Operadores
     void* operator new(size_t size);
     void operator delete(void* p);
 };

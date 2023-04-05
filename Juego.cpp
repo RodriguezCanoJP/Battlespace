@@ -62,7 +62,7 @@ void Juego::disparo() {
     if(1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
         std::cout << "Presiona espacio" << "\n";
         this->bullets_disponibles[0]->update(jugador.getY() + 12, bullet_vel);
-        this->bullets_usadas.push_back(bullets_disponibles[0]);
+        //this->bullets_usadas.push_back(bullets_disponibles[0]);
         this->bullets_disponibles.erase(this->bullets_disponibles.begin());
     }
 

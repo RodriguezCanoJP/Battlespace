@@ -11,7 +11,7 @@
 
 class Juego {
 private:
-    //Variables iniciales
+    /// Variables iniciales
     sf::RenderWindow* window; ///< puntero a la ventana
     sf::Event ev; ///< Ya esta inicializado
     sf::VideoMode videoMode; ///< guarda las dimensiones de la ventana
@@ -28,7 +28,14 @@ private:
     void initWindow();
 public:
     //Constructor/Destructor
+    /**
+     * Inicializa las variables del juego
+     */
     Juego();
+
+    /**
+     * Elimina ventana
+     */
     ~Juego();
 
     //Funciones publicas
