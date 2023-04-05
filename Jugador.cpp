@@ -2,7 +2,7 @@
 // Created by juanpablo on 04/04/23.
 //
 
-#include "Jugador.h"
+#include "Headers/Jugador.h"
 
 Jugador::Jugador() {
     this->x = 20;

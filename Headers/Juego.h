@@ -5,7 +5,9 @@
 #ifndef UNTITLED_JUEGO_H
 #define UNTITLED_JUEGO_H
 #include "Jugador.h"
+#include "Bullet.h"
 #include <iostream>
+#include <vector>
 
 class Juego {
 private:
@@ -15,6 +17,9 @@ private:
     sf::VideoMode videoMode; //guarda las dimensiones de la ventana
     Jugador jugador;
     float velJugador;
+    int bulletQty;
+    std::vector <Bullet*> bullets;
+
 
     //Funciones privadas
     void initVars();
@@ -28,6 +33,7 @@ public:
     const bool running() const;
     void pollEvents();
     void movJugador();
+    void disparo();
     void update();
     void render();
 

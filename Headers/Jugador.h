@@ -6,8 +6,8 @@
 #define UNTITLED_JUGADOR_H
 #include <SFML/Graphics.hpp>
 
-class Jugador {
-private:
+class Jugador{
+protected:
     //Sprite
     sf::Texture texture;
     sf::Sprite sprite;
@@ -15,17 +15,14 @@ private:
     int x;
     int y;
 public:
-    //Constructor/Destructor
+    //Destructor
     Jugador();
     ~Jugador();
-
     //Funciones publicas
-    void  update(int up, int down);
+    void update(int up, int down);
     int getX();
     int getY();
     sf::Sprite getSprite(); //retorna el sprite del jugador
-
-
 };
 
 
