@@ -17,8 +17,10 @@ BulletCollector Bullet::collector;
 
 void Bullet::update(int y, int velocity) {
     this->y = y;
-    this->x += velocity;
-    sprite.setPosition(this->x, this->y);
+    while(!outOfBounds()){
+        this->x += velocity;
+        sprite.setPosition(this->x, this->y);
+    }
 }
 
 int Bullet::getX() {
@@ -39,6 +41,10 @@ void *Bullet::operator new(size_t size) {
 
 void Bullet::operator delete(void *p) {
     collector.reciclar(p);
+}
+
+bool Bullet::outOfBounds() {
+    return this->x >= 800;
 }
 
 

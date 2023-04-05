@@ -6,9 +6,12 @@
 
 void Juego::initVars(){
     this->window = nullptr;
-    for (int i = 0; i < this->bulletQty; ++i) {
-        Bullet* nbullet = new Bullet();
-        this->bullets.push_back(nbullet);
+    this->bullet_vel = 2;
+    this->bullet_qty = 30;
+    this->bullets_usadas = {};
+    for (int i = 0; i < this->bullet_qty; ++i) {
+        Bullet* new_bullet = new Bullet();
+        this->bullets_disponibles.push_back(new_bullet);
     }
 }
 
@@ -57,19 +60,41 @@ void Juego::movJugador() {
 
 void Juego::disparo() {
     if(1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        std::cout << "Presiona espacio" << "\n";
+        this->bullets_disponibles[0]->update(jugador.getY() + 12, bullet_vel);
+        this->bullets_usadas.push_back(bullets_disponibles[0]);
+        this->bullets_disponibles.erase(this->bullets_disponibles.begin());
+    }
 
+}
+
+void Juego::recicla_balas() {
+    if(this->bullets_usadas[0]->outOfBounds()){
+        delete this->bullets_usadas[0];
+        std::cout << "bullet deleted";
+        this->bullets_usadas.erase(this->bullets_usadas.begin());
     }
 }
 
 void Juego::update() {
     this->pollEvents();
     this->movJugador();
+    this->disparo();
+    //this->recicla_balas();
 }
 
 void Juego::render() {
     this->window->clear(sf::Color().Cyan);
     this->window->draw(jugador.getSprite());
+    if(not this->bullets_usadas.empty()){
+        for(int i = 0; i <= this->bullets_usadas.size(); i++ ){
+            this->window->draw(bullets_usadas[i]->getSprite());
+        }
+    }
+
     this->window->display();
 }
+
+
 
 
