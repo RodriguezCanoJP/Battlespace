@@ -14,7 +14,7 @@ private:
     sf::Event ev; //Ya esta inicializado
     sf::VideoMode videoMode; //guarda las dimensiones de la ventana
     Jugador jugador;
-    int velJugador;
+    float velJugador;
 
     //Funciones privadas
     void initVars();
