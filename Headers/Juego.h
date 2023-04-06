@@ -8,6 +8,7 @@
 #include "Bullet.h"
 #include <iostream>
 #include <vector>
+#include <ctime>
 
 class Juego {
 private:
@@ -19,9 +20,10 @@ private:
     float velJugador; ///< velocidad de la nave
     int bullet_qty; ///< cantidad de balas disponibles
     float bullet_vel; ///< velocidad de las balas
+    float delay;
+    clock_t now;
     std::vector <Bullet*> bullets_disponibles; ///< vector con objetos Bullet disponibles
     std::vector <Bullet*> bullets_usadas; ///< vector con objetos Bullet disparadas
-
 
     //Funciones privadas
     void initVars();
@@ -49,6 +51,8 @@ public:
      * consulta si hay eventos de ventana como presionar la x
      */
     void pollEvents();
+
+    void reset_clock();
 
     /**
      * consulta si hay movimientos de teclado que corresponden a input de movimiento de la nave, llama

@@ -3,11 +3,16 @@
 //
 
 #include "Headers/Juego.h"
-int tm = 1;
+#include <iostream>
+
+
 void Juego::initVars(){
     this->window = nullptr;
     this->bullet_vel = 1;
     this->bullet_qty = 10;
+    this->delay = 0.1;
+    delay *= CLOCKS_PER_SEC;
+    this->now = clock();
     for (int i = 0; i < this->bullet_qty; ++i) {
         Bullet* new_bullet = new Bullet();
         this->bullets_disponibles.push_back(new_bullet);
@@ -56,12 +61,11 @@ void Juego::movJugador() {
 }
 
 void Juego::disparo() {
-    if(1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && 1 == tm){
-        std::cout << "Presiona espacio" << "\n";
-        this->bullets_usadas.push_back(this->bullets_disponibles[0]);
+    if(1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        this->bullets_usadas.insert(this->bullets_usadas.begin(), this->bullets_disponibles[0]);
         this->bullets_disponibles.erase(this->bullets_disponibles.begin());
         this->bullets_usadas[0]->setPath(this->jugador.getY() + 8);
-        tm = 0;
+        this->reset_clock();
     }
 
 }
@@ -69,7 +73,6 @@ void Juego::disparo() {
 void Juego::recicla_balas() {
     if(this->bullets_usadas[0]->getX() >=800){
         delete this->bullets_usadas[0];
-        std::cout << "bullet deleted: " << Bullet().collector.lista_punteros() << "\n";
         this->bullets_usadas.erase(this->bullets_usadas.begin());
     }
 }
@@ -77,7 +80,17 @@ void Juego::recicla_balas() {
 void Juego::update() {
     this->pollEvents();
     this->movJugador();
-    this->disparo();
+    if(!this->bullets_disponibles.empty()){
+        if(clock() - this-> now >= delay){
+            this->disparo();
+        }
+    }else{
+        Bullet().collector.lista_punteros();
+        for(int i = 0; i < this->bullet_qty; i++){
+            Bullet* new_bullet = new Bullet();
+            this->bullets_disponibles.push_back(new_bullet);
+        }
+    }
 
     if(!this->bullets_usadas.empty()) {
         for(int i = 0; i < bullets_usadas.size(); i++){
@@ -95,8 +108,11 @@ void Juego::render() {
             this->window->draw(bullets_usadas[i]->getSprite());
         }
     }
-    tm=1;
     this->window->display();
+}
+
+void Juego::reset_clock() {
+    this->now = clock();
 }
 
 

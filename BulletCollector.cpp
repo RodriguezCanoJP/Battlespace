@@ -33,6 +33,8 @@ void BulletCollector::liberar() {
  }
 }
 
-void* BulletCollector::lista_punteros() {
-    return punteros[0];
+void BulletCollector::lista_punteros() {
+    for(int i = 0; i<punteros.size(); i++){
+        std::cout << punteros[i] << "\n";
+    }
 }

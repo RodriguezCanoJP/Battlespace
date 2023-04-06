@@ -35,7 +35,7 @@ public:
     /**
      * Funcion paa visualizar las direcciones de memoria
      */
-    void* lista_punteros();
+    void lista_punteros();
 
 };
 
