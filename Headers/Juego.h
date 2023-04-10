@@ -22,6 +22,7 @@ private:
     float bullet_vel; ///< velocidad de las balas
     float delay;
     clock_t now;
+    clock_t enemy;
     std::vector <Bullet*> bullets_disponibles; ///< vector con objetos Bullet disponibles
     std::vector <Bullet*> bullets_usadas; ///< vector con objetos Bullet disparadas
 
