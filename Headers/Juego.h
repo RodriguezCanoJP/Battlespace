@@ -23,6 +23,7 @@ private:
     float delay;
     clock_t now;
     clock_t enemy;
+    int prueba2;
     std::vector <Bullet*> bullets_disponibles; ///< vector con objetos Bullet disponibles
     std::vector <Bullet*> bullets_usadas; ///< vector con objetos Bullet disparadas
 
