@@ -16,16 +16,19 @@ private:
     sf::RenderWindow* window; ///< puntero a la ventana
     sf::Event ev; ///< Ya esta inicializado
     sf::VideoMode videoMode; ///< guarda las dimensiones de la ventana
-    Jugador jugador; ///< Instancia de la nave del jugador
-    float velJugador; ///< velocidad de la nave
-    int bullet_qty; ///< cantidad de balas disponibles
-    float bullet_vel; ///< velocidad de las balas
-    float delay;
-    clock_t now;
-    clock_t enemy;
-    int prueba2;
     std::vector <Bullet*> bullets_disponibles; ///< vector con objetos Bullet disponibles
     std::vector <Bullet*> bullets_usadas; ///< vector con objetos Bullet disparadas
+    Jugador jugador; ///< Instancia de la nave del jugador
+    float velJugador; ///< velocidad de la nave
+    float velEnemigo; ///< velocidad de las naves enemigas
+    float bullet_vel; ///< velocidad de las balas
+    float delay;
+    int cantidad_enemigos = 10;
+    int bullet_qty; ///< cantidad de balas disponibles
+    int bullet_dmg; ///< impacto de las balas
+    clock_t enemy_clock;
+    clock_t bullet_clock;
+
 
     //Funciones privadas
     void initVars();
@@ -49,12 +52,21 @@ public:
      */
     const bool running() const;
 
+    void cargaBalas (int qty, int dmg);
+
+    void cargaEnemigos(int size);
+
     /**
      * consulta si hay eventos de ventana como presionar la x
      */
     void pollEvents();
 
-    void reset_clock();
+    /**
+     * Reasigna el valor guardado del tiempo en la variable now
+     */
+    void resetBulletClock();
+
+    void resetEnemyClock();
 
     /**
      * consulta si hay movimientos de teclado que corresponden a input de movimiento de la nave, llama
@@ -62,12 +74,18 @@ public:
      */
     void movJugador();
 
+    void setEnemigos(Enemigo* nave);
+
+    void movEnemigos();
+
     /**
-     * consulta is hay movimientos de teclado que corresponden a input de disparo de la nvae, llama
+     * consulta si hay movimientos de teclado que corresponden a input de disparo de la nvae, llama
      * a los metodos de Bullet guardado en el vector bullets_disponibles para comenzar su trayectoria
      * y guarda el puntero de este en el vector bullets_usadas
      */
     void disparo();
+
+    void movBalas();
 
     /**
      * llama al operador delete de Bullet cuando la bala sale de la pantalla y actualisa bullets_usadas
