@@ -4,10 +4,11 @@
 
 #include "Headers/Bullet.h"
 
-Bullet::Bullet() {
+Bullet::Bullet(int damage) {
     texture.loadFromFile("/home/juanpablo/CLionProjects/Battlespace/Images/bullet.png");
     sprite.setTexture(texture);
-    x = 60;
+    dmg = damage ;
+    x = 60; ///< posicion en x de la nave jugador
     y = 0;
 }
 
@@ -21,8 +22,8 @@ void Bullet::setPath(int y){
     this->y = y;
 }
 
-void Bullet::setPos(float velocity) {
-    this->x += velocity;
+void Bullet::update(float vel) {
+    this->x += vel;
     this->sprite.setPosition(this->x, this->y);
 }
 
