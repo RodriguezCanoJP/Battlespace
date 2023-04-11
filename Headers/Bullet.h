@@ -17,7 +17,7 @@ protected:
 public:
     static BulletCollector collector;
     ///Constructor/Destructor
-    Bullet();
+    Bullet(int damage);
     ~Bullet();
 
     /**
@@ -27,7 +27,7 @@ public:
      */
     void setPath(int y);
 
-    void setPos(float velocity);
+    void update(float vel);
 
     /**
      * Retorna la posicion en el eje x
