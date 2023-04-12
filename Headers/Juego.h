@@ -6,6 +6,7 @@
 #define UNTITLED_JUEGO_H
 #include "Jugador.h"
 #include "Bullet.h"
+#include "ListaEnlazada.h"
 #include <iostream>
 #include <vector>
 #include <ctime>
@@ -15,12 +16,13 @@ private:
     /// Variables iniciales
     sf::RenderWindow* window; ///< puntero a la ventana
     sf::Event ev; ///< Ya esta inicializado
-    sf::VideoMode videoMode; ///< guarda las dimensiones de la ventana
+    sf::VideoMode video_mode; ///< guarda las dimensiones de la ventana
     std::vector <Bullet*> bullets_disponibles; ///< vector con objetos Bullet disponibles
     std::vector <Bullet*> bullets_usadas; ///< vector con objetos Bullet disparadas
     Jugador jugador; ///< Instancia de la nave del jugador
-    float velJugador; ///< velocidad de la nave
-    float velEnemigo; ///< velocidad de las naves enemigas
+    ListaEnlazada lista_enemigos;
+    float vel_jugador; ///< velocidad de la nave
+    float vel_enemigo; ///< velocidad de las naves enemigas
     float bullet_vel; ///< velocidad de las balas
     float delay;
     int cantidad_enemigos = 10;
@@ -90,7 +92,7 @@ public:
     /**
      * llama al operador delete de Bullet cuando la bala sale de la pantalla y actualisa bullets_usadas
      */
-    void recicla_balas();
+    void reciclaBalas();
 
     /**
      * llama a las otras funciones que son recurrentes a traves del juego

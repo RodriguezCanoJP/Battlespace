@@ -4,7 +4,6 @@
 int main()
 {
     Juego juego;
-
     while (juego.running())
     {
         juego.update();

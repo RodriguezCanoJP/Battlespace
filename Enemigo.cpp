@@ -1,4 +1,6 @@
-
+//
+// Created by juanpablo on 06/04/23.
+//
 
 #include "Headers/Enemigo.h"
 
@@ -54,7 +56,6 @@ bool Enemigo::getInit() {
 void Enemigo::setInit() {
     this->init = true;
 }
-
 
 
 

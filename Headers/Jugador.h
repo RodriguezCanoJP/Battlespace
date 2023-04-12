@@ -8,6 +8,7 @@
 
 class Jugador{
 protected:
+    int health;
     sf::Texture texture; ///< textura del sprite
     sf::Sprite sprite; ///< objeto sprite
     int x; ///< posicion en el eje x
