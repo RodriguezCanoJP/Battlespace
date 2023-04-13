@@ -89,6 +89,8 @@ public:
 
     void movBalas();
 
+    void colisiones();
+
     /**
      * llama al operador delete de Bullet cuando la bala sale de la pantalla y actualisa bullets_usadas
      */

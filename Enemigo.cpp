@@ -5,11 +5,13 @@
 #include "Headers/Enemigo.h"
 
 Enemigo::Enemigo() {
+    this->x = 800;
     this->init = false;
     this->next = nullptr;
     this->previous = nullptr;
     this->texture.loadFromFile("/home/juanpablo/CLionProjects/Battlespace/Images/Enemigo2.png");
     this->sprite.setTexture(texture);
+    this->sprite.setPosition(this->x, 0);
 }
 
 Enemigo::~Enemigo() = default;

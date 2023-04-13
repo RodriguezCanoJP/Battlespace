@@ -8,10 +8,11 @@
 
 void Juego::initVars(){
     this->window = nullptr;
-    this->bullet_vel = 1;
+    this->bullet_vel = 2;
     this->bullet_qty = 10;
     this->bullet_dmg = 10;
     this->vel_enemigo = 1;
+    this->vel_jugador = 3;
     this->delay = 0.1;
     this->delay *= CLOCKS_PER_SEC;
     this->cargaBalas(this->bullet_qty, this->bullet_dmg);
@@ -26,7 +27,6 @@ void Juego::initWindow() {
     this->video_mode.width = 800;
     this->window = new sf::RenderWindow(this->video_mode, "Battlespace");
     this->window->setFramerateLimit(144);
-    this->vel_jugador = 3;
 }
 
 Juego::Juego() {
@@ -98,7 +98,6 @@ void Juego::movEnemigos() {
                 if(nave->getNext() != nullptr){
                     nave = nave->getNext();
                 }
-
             }else{
                 if(clock() - this->enemy_clock >= delay){
                     this->setEnemigos(nave);
@@ -113,6 +112,29 @@ void Juego::movEnemigos() {
 
 }
 
+void Juego::colisiones() {
+    Enemigo* nave = lista_enemigos.getNave();
+    if(!bullets_usadas.empty()){
+        for (int i = 0; i < bullets_usadas.size(); ++i) {
+            for (int j = 0; j < lista_enemigos.ssize(); ++j) {
+                sf::FloatRect rectBullet = bullets_usadas[i]->getSprite().getGlobalBounds();
+                sf::FloatRect rectNave = nave->getSprite().getGlobalBounds();
+                if(rectNave.contains(rectBullet.left+rectBullet.width, rectBullet.top+(rectBullet.height/2))){
+                    lista_enemigos.eliminar(nave);
+                    nave = lista_enemigos.getNave();
+                }else{
+                    if(nave->getNext() != nullptr){
+                        nave = nave->getNext();
+                    }else{
+                        break;
+                    }
+
+                }
+            }
+        }
+    }
+
+}
 
 void Juego::disparo() {
     if(!this->bullets_disponibles.empty()) {
@@ -140,7 +162,7 @@ void Juego::movBalas() {
 }
 
 void Juego::reciclaBalas() {
-    if(this->bullets_usadas[0]->getX() >= 800){
+    if(this->bullets_usadas[0]->outOfBounds()){
         delete this->bullets_usadas[0];
         this->bullets_usadas.erase(this->bullets_usadas.begin());
         this->bullet_qty++;
@@ -153,6 +175,7 @@ void Juego::update() {
     this->disparo();
     this->movBalas();
     this->movEnemigos();
+    this->colisiones();
 }
 
 void Juego::render() {
@@ -174,6 +197,8 @@ void Juego::render() {
     }
     this->window->display();
 }
+
+
 
 
 
