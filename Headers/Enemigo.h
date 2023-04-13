@@ -12,6 +12,7 @@ protected:
     Enemigo* previous;
     sf::Texture texture; ///< textura del sprite
     sf::Sprite sprite; ///< objeto sprite
+    int health;
     int x; ///< posicion en el eje x
     int y; ///< posicion en el eje y
     bool init;
@@ -25,6 +26,10 @@ public:
     Enemigo* getPrevious();
     void setNext(Enemigo* enemigo);
     void setPrevious(Enemigo* enemigo);
+
+    bool getDead();
+
+    void setDamage(int dmg);
 
     void setPos(int x, int y){
         this->x = x;

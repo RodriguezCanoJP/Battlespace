@@ -41,6 +41,8 @@ public:
      */
     int getY();
 
+    int getDamage();
+
     /**
      * Retorna el sprite del jugador
      * @return Sprte sprite

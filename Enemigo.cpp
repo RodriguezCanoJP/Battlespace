@@ -6,6 +6,7 @@
 
 Enemigo::Enemigo() {
     this->x = 800;
+    this->health = 100;
     this->init = false;
     this->next = nullptr;
     this->previous = nullptr;
@@ -57,6 +58,14 @@ bool Enemigo::getInit() {
 
 void Enemigo::setInit() {
     this->init = true;
+}
+
+bool Enemigo::getDead() {
+    return this->health <= 0;
+}
+
+void Enemigo::setDamage(int dmg) {
+    this->health -= dmg;
 }
 
 

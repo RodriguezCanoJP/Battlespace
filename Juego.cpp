@@ -10,11 +10,13 @@ void Juego::initVars(){
     this->window = nullptr;
     this->bullet_vel = 2;
     this->bullet_qty = 10;
-    this->bullet_dmg = 10;
+    this->bullet_dmg = 50;
     this->vel_enemigo = 1;
     this->vel_jugador = 3;
-    this->delay = 0.1;
-    this->delay *= CLOCKS_PER_SEC;
+    this->spawn_delay = 0.5;
+    this->spawn_delay *= CLOCKS_PER_SEC;
+    this->shot_delay = 0.1;
+    this->shot_delay *= CLOCKS_PER_SEC;
     this->cargaBalas(this->bullet_qty, this->bullet_dmg);
     this->cargaEnemigos(10);
     this->bullet_qty = 0;
@@ -39,7 +41,7 @@ Juego::~Juego() {
     Bullet::collector.liberar();
 }
 
-const bool Juego::running() const {
+bool Juego::running() const {
     return this->window->isOpen();
 }
 
@@ -99,7 +101,7 @@ void Juego::movEnemigos() {
                     nave = nave->getNext();
                 }
             }else{
-                if(clock() - this->enemy_clock >= delay){
+                if(clock() - this->enemy_clock >= spawn_delay){
                     this->setEnemigos(nave);
                     this->resetEnemyClock();
                     break;
@@ -120,15 +122,25 @@ void Juego::colisiones() {
                 sf::FloatRect rectBullet = bullets_usadas[i]->getSprite().getGlobalBounds();
                 sf::FloatRect rectNave = nave->getSprite().getGlobalBounds();
                 if(rectNave.contains(rectBullet.left+rectBullet.width, rectBullet.top+(rectBullet.height/2))){
-                    lista_enemigos.eliminar(nave);
-                    nave = lista_enemigos.getNave();
+                    nave->setDamage(bullets_usadas[i]->getDamage());
+                    delete this->bullets_usadas[0];
+                    this->bullets_usadas.erase(this->bullets_usadas.begin());
+                    if(nave->getDead()){
+                        lista_enemigos.eliminar(nave);
+                        nave = lista_enemigos.getNave();
+                    }else{
+                        if(nave->getNext() != nullptr){
+                            nave = nave->getNext();
+                        }else{
+                            break;
+                        }
+                    }
                 }else{
                     if(nave->getNext() != nullptr){
                         nave = nave->getNext();
                     }else{
                         break;
                     }
-
                 }
             }
         }
@@ -138,7 +150,7 @@ void Juego::colisiones() {
 
 void Juego::disparo() {
     if(!this->bullets_disponibles.empty()) {
-        if(clock() - this->bullet_clock >= delay) {
+        if(clock() - this->bullet_clock >= shot_delay) {
             if (1 == sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
                 this->bullets_usadas.insert(this->bullets_usadas.begin(), this->bullets_disponibles[0]);
                 this->bullets_disponibles.erase(this->bullets_disponibles.begin());
@@ -146,9 +158,6 @@ void Juego::disparo() {
                 this->resetBulletClock();
             }
         }
-    }else{
-        this->bullet_dmg -= 3;
-        cargaBalas(this->bullet_qty, this->bullet_dmg);
     }
 }
 
@@ -165,7 +174,15 @@ void Juego::reciclaBalas() {
     if(this->bullets_usadas[0]->outOfBounds()){
         delete this->bullets_usadas[0];
         this->bullets_usadas.erase(this->bullets_usadas.begin());
-        this->bullet_qty++;
+        this->bullet_qty ++;
+    }
+}
+
+void Juego::recargaBalas() {
+    if(this->bullets_disponibles.empty() && this->bullets_usadas.empty()){
+        this->bullet_dmg -= 15;
+        cargaBalas(this->bullet_qty, this->bullet_dmg);
+        this->bullet_qty = 0;
     }
 }
 
@@ -176,6 +193,11 @@ void Juego::update() {
     this->movBalas();
     this->movEnemigos();
     this->colisiones();
+    this->recargaBalas();
+    std::cout << "disponibles: " << this->bullets_disponibles.size() << "\n";
+    std::cout << "usadas: " << this->bullets_usadas.size() << "\n";
+    std::cout << "qty: " << this->bullet_qty << "\n\n";
+
 }
 
 void Juego::render() {
@@ -197,6 +219,8 @@ void Juego::render() {
     }
     this->window->display();
 }
+
+
 
 
 

@@ -24,7 +24,8 @@ private:
     float vel_jugador; ///< velocidad de la nave
     float vel_enemigo; ///< velocidad de las naves enemigas
     float bullet_vel; ///< velocidad de las balas
-    float delay;
+    float spawn_delay;
+    float shot_delay;
     int cantidad_enemigos = 10;
     int bullet_qty; ///< cantidad de balas disponibles
     int bullet_dmg; ///< impacto de las balas
@@ -52,9 +53,10 @@ public:
      * consulta si la ventana de juego sigue abierta
      * @return bool
      */
-    const bool running() const;
+    bool running() const;
 
     void cargaBalas (int qty, int dmg);
+    void recargaBalas();
 
     void cargaEnemigos(int size);
 

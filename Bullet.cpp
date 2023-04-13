@@ -35,6 +35,10 @@ int Bullet::getY() {
     return this->y;
 }
 
+int Bullet::getDamage() {
+    return this->dmg;
+}
+
 sf::Sprite Bullet::getSprite() {
     return this->sprite;
 }
@@ -50,5 +54,7 @@ void Bullet::operator delete(void *p) {
 bool Bullet::outOfBounds() {
     return this->x >= 800;
 }
+
+
 
 
