@@ -44,10 +44,20 @@ void ListaEnlazada::eliminar(Enemigo* nave) {
                 target = target->getNext();
             }
         }
-        target->getNext()->setPrevious(target->getPrevious());
-        target->getPrevious()->setNext(target->getNext());
-        delete target;
-        this->size --;
+        Enemigo* prev = target->getPrevious();
+        Enemigo* nex = target->getNext();
+        if(nex != nullptr){
+            nex->setPrevious(prev);
+            if(prev == nullptr){
+                this->head = nex;
+                delete target;
+                this->size --;
+            }else{
+                prev->setNext(nex);
+                delete target;
+                this->size --;
+            }
+        }
     }
 
 }
