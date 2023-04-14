@@ -19,7 +19,7 @@ protected:
 
 public:
     ///Constructor/Destructor
-    Enemigo();
+    Enemigo(int type);
     ~Enemigo();
 
     Enemigo* getNext();

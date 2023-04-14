@@ -6,19 +6,21 @@
 #include <iostream>
 
 
+
+
 void Juego::initVars(){
     this->window = nullptr;
     this->bullet_vel = 2;
-    this->bullet_qty = 10;
+    this->bullet_qty = oleadas[4].bullets;
     this->bullet_dmg = 50;
     this->vel_enemigo = 1;
     this->vel_jugador = 3;
-    this->spawn_delay = 0.5;
+    this->spawn_delay = 0.1;
     this->spawn_delay *= CLOCKS_PER_SEC;
-    this->shot_delay = 0.1;
+    this->shot_delay = 0.05;
     this->shot_delay *= CLOCKS_PER_SEC;
     this->cargaBalas(this->bullet_qty, this->bullet_dmg);
-    this->cargaEnemigos(10);
+    this->cargaEnemigos(oleadas[4].enemigo1, oleadas[4].enemigo2, oleadas[4].enemigo3);
     this->bullet_qty = 0;
     this->enemy_clock = clock();
     this->bullet_clock = clock();
@@ -31,11 +33,10 @@ void Juego::initWindow() {
     this->window->setFramerateLimit(144);
 }
 
-Juego::Juego() {
+Juego::Juego(){
     this->initVars();
     this->initWindow();
 }
-
 Juego::~Juego() {
     delete this->window;
     Bullet::collector.liberar();
@@ -45,6 +46,7 @@ bool Juego::running() const {
     return this->window->isOpen();
 }
 
+
 void Juego::cargaBalas(int qty, int dmg){
     for (int i = 0; i < qty; ++i) {
         Bullet *new_bullet = new Bullet(dmg);
@@ -52,9 +54,15 @@ void Juego::cargaBalas(int qty, int dmg){
     }
 }
 
-void Juego::cargaEnemigos(int size) {
-    for(int i = 0; i < size; i++){
-        this->lista_enemigos.insertar(new Enemigo());
+void Juego::cargaEnemigos(int enemigo1, int enemigo2, int enemigo3) {
+    for(int i = 0; i < enemigo1; i++){
+        this->lista_enemigos.insertar(new Enemigo(1));
+    }
+    for(int i = 0; i < enemigo2; i++){
+        this->lista_enemigos.insertar(new Enemigo(2));
+    }
+    for(int i = 0; i < enemigo3; i++){
+        this->lista_enemigos.insertar(new Enemigo(3));
     }
 }
 
@@ -97,8 +105,13 @@ void Juego::movEnemigos() {
         for(int i=0; i < this->lista_enemigos.ssize(); i++){
             if(nave->getInit()){
                 nave->update(vel_enemigo);
-                if(nave->getNext() != nullptr){
-                    nave = nave->getNext();
+                if(nave->getX() <= 60){
+                    lista_enemigos.eliminar(nave);
+                    nave = lista_enemigos.getNave();
+                }else{
+                    if(nave->getNext() != nullptr){
+                        nave = nave->getNext();
+                    }
                 }
             }else{
                 if(clock() - this->enemy_clock >= spawn_delay){
@@ -117,12 +130,12 @@ void Juego::movEnemigos() {
 void Juego::colisiones() {
     Enemigo* nave = lista_enemigos.getNave();
     if(!bullets_usadas.empty()){
-        for (int i = 0; i < bullets_usadas.size(); ++i) {
+        for (auto & bullets_usada : bullets_usadas) {
             for (int j = 0; j < lista_enemigos.ssize(); ++j) {
-                sf::FloatRect rectBullet = bullets_usadas[i]->getSprite().getGlobalBounds();
+                sf::FloatRect rectBullet = bullets_usada->getSprite().getGlobalBounds();
                 sf::FloatRect rectNave = nave->getSprite().getGlobalBounds();
                 if(rectNave.contains(rectBullet.left+rectBullet.width, rectBullet.top+(rectBullet.height/2))){
-                    nave->setDamage(bullets_usadas[i]->getDamage());
+                    nave->setDamage(bullets_usada->getDamage());
                     delete this->bullets_usadas[0];
                     this->bullets_usadas.erase(this->bullets_usadas.begin());
                     if(nave->getDead()){
@@ -194,10 +207,6 @@ void Juego::update() {
     this->movEnemigos();
     this->colisiones();
     this->recargaBalas();
-    std::cout << "disponibles: " << this->bullets_disponibles.size() << "\n";
-    std::cout << "usadas: " << this->bullets_usadas.size() << "\n";
-    std::cout << "qty: " << this->bullet_qty << "\n\n";
-
 }
 
 void Juego::render() {
@@ -219,21 +228,5 @@ void Juego::render() {
     }
     this->window->display();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -4,15 +4,21 @@
 
 #include "Headers/Enemigo.h"
 
-Enemigo::Enemigo() {
+Enemigo::Enemigo(int type) {
     this->x = 800;
     this->health = 100;
     this->init = false;
     this->next = nullptr;
     this->previous = nullptr;
-    this->texture.loadFromFile("/home/juanpablo/CLionProjects/Battlespace/Images/Enemigo2.png");
+    if(type == 1){
+        this->texture.loadFromFile("/home/juanpablo/CLionProjects/Battlespace/Images/Enemigo2.png");
+    }else if(type == 2){
+        this->texture.loadFromFile("/home/juanpablo/CLionProjects/Battlespace/Images/Enemigo1.png");
+    }else if(type == 3){
+        this->texture.loadFromFile("/home/juanpablo/CLionProjects/Battlespace/Images/Enemigo3.png");
+    }
     this->sprite.setTexture(texture);
-    this->sprite.setPosition(this->x, 0);
+    this->sprite.setPosition(this->x, 400);
 }
 
 Enemigo::~Enemigo() = default;
