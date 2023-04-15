@@ -8,6 +8,7 @@
 
 ListaEnlazada::ListaEnlazada(){
     this->head = nullptr;
+    this->size = 0;
 };
 
 ListaEnlazada::~ListaEnlazada() {

@@ -6,21 +6,21 @@
 #include <iostream>
 
 
-
+const int MAX_DAMAGE = 50;
 
 void Juego::initVars(){
     this->window = nullptr;
+    this->oleada_actual = 0;
     this->bullet_vel = 2;
-    this->bullet_qty = oleadas[4].bullets;
-    this->bullet_dmg = 50;
+    this->bullet_dmg = MAX_DAMAGE;
+    this->bullet_qty = oleadas[oleada_actual].bullets;
     this->vel_enemigo = 1;
     this->vel_jugador = 3;
-    this->spawn_delay = 0.1;
+    this->spawn_delay = 0.2;
     this->spawn_delay *= CLOCKS_PER_SEC;
-    this->shot_delay = 0.05;
+    this->shot_delay = 0.01;
     this->shot_delay *= CLOCKS_PER_SEC;
-    this->cargaBalas(this->bullet_qty, this->bullet_dmg);
-    this->cargaEnemigos(oleadas[4].enemigo1, oleadas[4].enemigo2, oleadas[4].enemigo3);
+    this->cargaOleada();
     this->bullet_qty = 0;
     this->enemy_clock = clock();
     this->bullet_clock = clock();
@@ -46,6 +46,35 @@ bool Juego::running() const {
     return this->window->isOpen();
 }
 
+void Juego::pollEvents() {
+    while(this->window->pollEvent(this->ev)){
+        switch (this->ev.type) {
+            case sf::Event::Closed:
+                this->window->close();this->cargaEnemigos(oleadas[oleada_actual].enemigo1, oleadas[oleada_actual].enemigo2, oleadas[oleada_actual].enemigo3);
+                break;
+        }
+    }
+}
+
+void Juego::cargaOleada() {
+    if(!bullets_disponibles.empty()){
+        for(int i=0; i < this->bullets_disponibles.size(); i++){
+            delete bullets_disponibles[i];
+            this->bullets_disponibles.erase(this->bullets_disponibles.begin());
+        }
+    }
+    this->bullet_qty = 0;
+    this->bullet_dmg = MAX_DAMAGE;
+    if(oleada_actual <= 4){
+        this->cargaEnemigos(oleadas[oleada_actual].enemigo1, oleadas[oleada_actual].enemigo2, oleadas[oleada_actual].enemigo3);
+        this->cargaBalas(oleadas[oleada_actual].bullets, this->bullet_dmg);
+    }else{
+        oleada_actual = 0;
+        this->cargaEnemigos(oleadas[oleada_actual].enemigo1, oleadas[oleada_actual].enemigo2, oleadas[oleada_actual].enemigo3);
+        this->cargaBalas(oleadas[oleada_actual].bullets, this->bullet_dmg);
+    }
+
+}
 
 void Juego::cargaBalas(int qty, int dmg){
     for (int i = 0; i < qty; ++i) {
@@ -55,15 +84,16 @@ void Juego::cargaBalas(int qty, int dmg){
 }
 
 void Juego::cargaEnemigos(int enemigo1, int enemigo2, int enemigo3) {
-    for(int i = 0; i < enemigo1; i++){
-        this->lista_enemigos.insertar(new Enemigo(1));
+    for(int i = 0; i < enemigo3; i++){
+        this->lista_enemigos.insertar(new Enemigo(3));
     }
     for(int i = 0; i < enemigo2; i++){
         this->lista_enemigos.insertar(new Enemigo(2));
     }
-    for(int i = 0; i < enemigo3; i++){
-        this->lista_enemigos.insertar(new Enemigo(3));
+    for(int i = 0; i < enemigo1; i++){
+        this->lista_enemigos.insertar(new Enemigo(1));
     }
+
 }
 
 void Juego::resetBulletClock() {
@@ -72,16 +102,6 @@ void Juego::resetBulletClock() {
 
 void Juego::resetEnemyClock() {
     this->enemy_clock = clock();
-}
-
-void Juego::pollEvents() {
-    while(this->window->pollEvent(this->ev)){
-        switch (this->ev.type) {
-            case sf::Event::Closed:
-                this->window->close();
-                break;
-        }
-    }
 }
 
 
@@ -111,6 +131,8 @@ void Juego::movEnemigos() {
                 }else{
                     if(nave->getNext() != nullptr){
                         nave = nave->getNext();
+                    }else{
+                        break;
                     }
                 }
             }else{
@@ -123,6 +145,9 @@ void Juego::movEnemigos() {
                 }
             }
         }
+    }else{
+        oleada_actual++;
+        cargaOleada();
     }
 
 }
@@ -228,5 +253,7 @@ void Juego::render() {
     }
     this->window->display();
 }
+
+
 
 

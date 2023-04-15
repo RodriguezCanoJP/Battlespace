@@ -27,7 +27,7 @@ private:
     sf::RenderWindow* window; ///< puntero a la ventana
     sf::Event ev; ///< Ya esta inicializado
     sf::VideoMode video_mode; ///< guarda las dimensiones de la ventana
-    sf::Text oleada_actual;
+    sf::Text oleada_text;
     std::vector <Bullet*> bullets_disponibles; ///< vector con objetos Bullet disponibles
     std::vector <Bullet*> bullets_usadas; ///< vector con objetos Bullet disparadas
     Jugador jugador; ///< Instancia de la nave del jugador
@@ -39,6 +39,7 @@ private:
     float shot_delay;
     int bullet_qty; ///< cantidad de balas disponibles
     int bullet_dmg; ///< impacto de las balas
+    int oleada_actual;
     clock_t enemy_clock;
     clock_t bullet_clock;
     Oleada oleadas[5] = {Oleada(5,0,0,10), Oleada(4,3,0,20), Oleada(5,2,2,25), Oleada(5,4,4,40), Oleada(5,5,5,45)};
@@ -67,6 +68,8 @@ public:
     void cargaBalas (int qty, int dmg);
 
     void recargaBalas();
+
+    void cargaOleada();
 
     void cargaEnemigos(int enemigo1, int enemigo2, int enemigo3);
 
