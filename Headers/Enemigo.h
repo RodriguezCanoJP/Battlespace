@@ -12,6 +12,8 @@ protected:
     Enemigo* previous;
     sf::Texture texture; ///< textura del sprite
     sf::Sprite sprite; ///< objeto sprite
+    int type;
+    int up;
     int health;
     int x; ///< posicion en el eje x
     int y; ///< posicion en el eje y
