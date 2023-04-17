@@ -28,19 +28,19 @@ int main() {
         while (menu.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 menu.close();
-            else if(event.type == sf::Event::MouseMoved){
-                if(btn1.isMouseOver(menu)){
+            else if (event.type == sf::Event::MouseMoved) {
+                if (btn1.isMouseOver(menu)) {
                     btn1.setBackColor(sf::Color::Blue);
-                }else if(btn2.isMouseOver(menu)){
+                } else if (btn2.isMouseOver(menu)) {
                     btn2.setBackColor(sf::Color::Blue);
-                }else if(btn3.isMouseOver(menu)){
+                } else if (btn3.isMouseOver(menu)) {
                     btn3.setBackColor(sf::Color::Blue);
-                }else{
+                } else {
                     btn1.setBackColor(sf::Color::Green);
                     btn2.setBackColor(sf::Color::Green);
                     btn3.setBackColor(sf::Color::Green);
                 }
-            }else if(event.type == sf::Event::MouseButtonPressed) {
+            } else if (event.type == sf::Event::MouseButtonPressed) {
                 if (btn1.isMouseOver(menu)) {
                     dificultad = "facil";
                     menu.close();
@@ -62,7 +62,9 @@ int main() {
         // Update the window150
         menu.display();
     }
-    std::cout << dificultad << std::endl;
+
+    serial::Serial my_serial("/dev/ttyUSB0", 9600, serial::Timeout::simpleTimeout(3000));
+
     Juego juego(dificultad);
 
     while (juego.running()) {
