@@ -53,7 +53,7 @@ void Enemigo::update(int vel) {
             this->up = 1;
         }
         this->x -= vel;
-        this->y += (vel*up);
+        this->y += (up);
         this->sprite.setPosition(this->x, this->y);
     }else{
         this->x -= vel;

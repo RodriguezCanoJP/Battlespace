@@ -15,15 +15,19 @@ void Juego::initVars(std::string dif){
     this->bullet_dmg = MAX_DAMAGE;
     this->bullet_qty = oleadas1[oleada_actual].bullets;
     if(dif == "facil"){
+        dificultad = 1;
         vel_enemigo = 1;
         this->cargaOleada(oleadas1);
     }else if(dif == "medio"){
+        dificultad =2;
         vel_enemigo = 2;
         this->cargaOleada(oleadas2);
     }else if(dif == "dificil"){
+        dificultad =3;
         vel_enemigo = 3;
         this->cargaOleada(oleadas3);
     }
+
     this->vel_jugador = 3;
     this->spawn_delay = 0.2;
     this->spawn_delay *= CLOCKS_PER_SEC;
@@ -157,7 +161,14 @@ void Juego::movEnemigos() {
         }
     }else{
         oleada_actual++;
-        cargaOleada(oleadas1);
+        if(dificultad == 1){
+            cargaOleada(oleadas1);
+        }else if(dificultad ==2){
+            cargaOleada(oleadas2);
+        }else{
+            cargaOleada(oleadas3);
+        }
+
     }
 
 }

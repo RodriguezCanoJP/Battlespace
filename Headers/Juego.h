@@ -43,9 +43,9 @@ private:
     clock_t enemy_clock;
     clock_t bullet_clock;
     int dificultad;
-    Oleada oleadas1[5] = {Oleada(5,0,0,10), Oleada(4,3,0,20), Oleada(5,2,2,25), Oleada(5,4,4,40), Oleada(5,5,5,45)};
-    Oleada oleadas2[5] = {Oleada(5,0,0,10), Oleada(4,3,0,20), Oleada(5,2,2,25), Oleada(5,4,4,40), Oleada(5,5,5,45)};
-    Oleada oleadas3[5] = {Oleada(5,0,0,10), Oleada(4,3,0,20), Oleada(5,2,2,25), Oleada(5,4,4,40), Oleada(5,5,5,45)};
+    Oleada oleadas1[5] = {Oleada(3,0,0,15), Oleada(3,2,0,35), Oleada(3,2,1,40), Oleada(3,2,1,50), Oleada(3,3,3,60)};
+    Oleada oleadas2[5] = {Oleada(4,0,0,20), Oleada(3,3,0,30), Oleada(4,2,1,35), Oleada(4,3,2,45), Oleada(4,4,4,55)};
+    Oleada oleadas3[5] = {Oleada(5,0,0,15), Oleada(4,3,0,25), Oleada(5,2,2,30), Oleada(5,4,3,40), Oleada(5,5,5,50)};
     //Funciones privadas
     void initVars(std::string dif);
     void initWindow();
