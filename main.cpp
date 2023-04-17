@@ -1,7 +1,16 @@
 #include <iostream>
+#include "third-party/include/serial/serial.h"
 #include "Headers/Juego.h"
 #include "Headers/Button.h"
-#include "thread"
+#include <thread>
+#include <ctime>
+
+
+clock_t now = clock();
+float write_delay = 0.15 * CLOCKS_PER_SEC;
+void foo(serial::Serial serial1 , Juego juego){
+    serial1.write(juego.retornaOleada());
+}
 
 int main() {
     sf::RenderWindow menu = sf::RenderWindow(sf::VideoMode(800, 400), "Battlespace");
@@ -65,11 +74,29 @@ int main() {
 
     serial::Serial my_serial("/dev/ttyUSB0", 9600, serial::Timeout::simpleTimeout(3000));
 
+    if (my_serial.isOpen())
+    {
+        std::cout << "Port opened succesfully" << std::endl;
+    }
+    else
+    {
+        std::cout << "Port failed to open" << std::endl;
+        exit(1);
+    }
+    my_serial.flushOutput();
     Juego juego(dificultad);
 
-    while (juego.running()) {
-        juego.update();
 
+    while (juego.running()) {
+        if(clock() - now > write_delay){
+            my_serial.write(juego.retornaOleada());
+            std::cout << clock() - now << "\n";
+            now = clock();
+        }
+
+        if(juego.)
+        my_serial.flushOutput();
+        juego.update();
         juego.render();
     }
 

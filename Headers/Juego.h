@@ -8,6 +8,7 @@
 #include "Bullet.h"
 #include "ListaEnlazada.h"
 #include <iostream>
+#include <string>
 #include <vector>
 #include <ctime>
 
@@ -67,6 +68,8 @@ public:
      * @return bool
      */
     bool running() const;
+
+    std::string retornaOleada();
 
     void cargaBalas (int qty, int dmg);
 

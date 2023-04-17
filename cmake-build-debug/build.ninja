@@ -41,67 +41,113 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /home/juanpablo/CLionProjects/Battlespace/cmake-build-debug/
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target serial
+
+
+#############################################
+# Order-only phony target for serial
+
+build cmake_object_order_depends_target_serial: phony || CMakeFiles/serial.dir
+
+build CMakeFiles/serial.dir/third-party/src/impl/list_ports/list_ports_linux.cc.o: CXX_COMPILER__serial_Debug /home/juanpablo/CLionProjects/Battlespace/third-party/src/impl/list_ports/list_ports_linux.cc || cmake_object_order_depends_target_serial
+  DEP_FILE = CMakeFiles/serial.dir/third-party/src/impl/list_ports/list_ports_linux.cc.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I/home/juanpablo/CLionProjects/Battlespace/cmake-build-debug -I/home/juanpablo/CLionProjects/Battlespace -I/home/juanpablo/CLionProjects/Battlespace/third-party/include
+  OBJECT_DIR = CMakeFiles/serial.dir
+  OBJECT_FILE_DIR = CMakeFiles/serial.dir/third-party/src/impl/list_ports
+
+build CMakeFiles/serial.dir/third-party/src/serial.cc.o: CXX_COMPILER__serial_Debug /home/juanpablo/CLionProjects/Battlespace/third-party/src/serial.cc || cmake_object_order_depends_target_serial
+  DEP_FILE = CMakeFiles/serial.dir/third-party/src/serial.cc.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I/home/juanpablo/CLionProjects/Battlespace/cmake-build-debug -I/home/juanpablo/CLionProjects/Battlespace -I/home/juanpablo/CLionProjects/Battlespace/third-party/include
+  OBJECT_DIR = CMakeFiles/serial.dir
+  OBJECT_FILE_DIR = CMakeFiles/serial.dir/third-party/src
+
+build CMakeFiles/serial.dir/third-party/src/impl/unix.cc.o: CXX_COMPILER__serial_Debug /home/juanpablo/CLionProjects/Battlespace/third-party/src/impl/unix.cc || cmake_object_order_depends_target_serial
+  DEP_FILE = CMakeFiles/serial.dir/third-party/src/impl/unix.cc.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I/home/juanpablo/CLionProjects/Battlespace/cmake-build-debug -I/home/juanpablo/CLionProjects/Battlespace -I/home/juanpablo/CLionProjects/Battlespace/third-party/include
+  OBJECT_DIR = CMakeFiles/serial.dir
+  OBJECT_FILE_DIR = CMakeFiles/serial.dir/third-party/src/impl
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target serial
+
+
+#############################################
+# Link the static library libserial.a
+
+build libserial.a: CXX_STATIC_LIBRARY_LINKER__serial_Debug CMakeFiles/serial.dir/third-party/src/impl/list_ports/list_ports_linux.cc.o CMakeFiles/serial.dir/third-party/src/serial.cc.o CMakeFiles/serial.dir/third-party/src/impl/unix.cc.o
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = CMakeFiles/serial.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = libserial.a
+  TARGET_PDB = serial.a.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target untitled
 
 
 #############################################
 # Order-only phony target for untitled
 
-build cmake_object_order_depends_target_untitled: phony || CMakeFiles/untitled.dir
+build cmake_object_order_depends_target_untitled: phony || cmake_object_order_depends_target_serial
 
 build CMakeFiles/untitled.dir/main.cpp.o: CXX_COMPILER__untitled_Debug /home/juanpablo/CLionProjects/Battlespace/main.cpp || cmake_object_order_depends_target_untitled
   DEP_FILE = CMakeFiles/untitled.dir/main.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -I/usr/include/SFML
+  INCLUDES = -I/home/juanpablo/CLionProjects/Battlespace/cmake-build-debug -I/home/juanpablo/CLionProjects/Battlespace -I/home/juanpablo/CLionProjects/Battlespace/third-party/include -I/usr/include/SFML
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir
 
 build CMakeFiles/untitled.dir/Juego.cpp.o: CXX_COMPILER__untitled_Debug /home/juanpablo/CLionProjects/Battlespace/Juego.cpp || cmake_object_order_depends_target_untitled
   DEP_FILE = CMakeFiles/untitled.dir/Juego.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -I/usr/include/SFML
+  INCLUDES = -I/home/juanpablo/CLionProjects/Battlespace/cmake-build-debug -I/home/juanpablo/CLionProjects/Battlespace -I/home/juanpablo/CLionProjects/Battlespace/third-party/include -I/usr/include/SFML
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir
 
 build CMakeFiles/untitled.dir/Jugador.cpp.o: CXX_COMPILER__untitled_Debug /home/juanpablo/CLionProjects/Battlespace/Jugador.cpp || cmake_object_order_depends_target_untitled
   DEP_FILE = CMakeFiles/untitled.dir/Jugador.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -I/usr/include/SFML
+  INCLUDES = -I/home/juanpablo/CLionProjects/Battlespace/cmake-build-debug -I/home/juanpablo/CLionProjects/Battlespace -I/home/juanpablo/CLionProjects/Battlespace/third-party/include -I/usr/include/SFML
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir
 
 build CMakeFiles/untitled.dir/Bullet.cpp.o: CXX_COMPILER__untitled_Debug /home/juanpablo/CLionProjects/Battlespace/Bullet.cpp || cmake_object_order_depends_target_untitled
   DEP_FILE = CMakeFiles/untitled.dir/Bullet.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -I/usr/include/SFML
+  INCLUDES = -I/home/juanpablo/CLionProjects/Battlespace/cmake-build-debug -I/home/juanpablo/CLionProjects/Battlespace -I/home/juanpablo/CLionProjects/Battlespace/third-party/include -I/usr/include/SFML
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir
 
 build CMakeFiles/untitled.dir/BulletCollector.cpp.o: CXX_COMPILER__untitled_Debug /home/juanpablo/CLionProjects/Battlespace/BulletCollector.cpp || cmake_object_order_depends_target_untitled
   DEP_FILE = CMakeFiles/untitled.dir/BulletCollector.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -I/usr/include/SFML
+  INCLUDES = -I/home/juanpablo/CLionProjects/Battlespace/cmake-build-debug -I/home/juanpablo/CLionProjects/Battlespace -I/home/juanpablo/CLionProjects/Battlespace/third-party/include -I/usr/include/SFML
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir
 
 build CMakeFiles/untitled.dir/Enemigo.cpp.o: CXX_COMPILER__untitled_Debug /home/juanpablo/CLionProjects/Battlespace/Enemigo.cpp || cmake_object_order_depends_target_untitled
   DEP_FILE = CMakeFiles/untitled.dir/Enemigo.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -I/usr/include/SFML
+  INCLUDES = -I/home/juanpablo/CLionProjects/Battlespace/cmake-build-debug -I/home/juanpablo/CLionProjects/Battlespace -I/home/juanpablo/CLionProjects/Battlespace/third-party/include -I/usr/include/SFML
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir
 
 build CMakeFiles/untitled.dir/ListaEnlazada.cpp.o: CXX_COMPILER__untitled_Debug /home/juanpablo/CLionProjects/Battlespace/ListaEnlazada.cpp || cmake_object_order_depends_target_untitled
   DEP_FILE = CMakeFiles/untitled.dir/ListaEnlazada.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -I/usr/include/SFML
+  INCLUDES = -I/home/juanpablo/CLionProjects/Battlespace/cmake-build-debug -I/home/juanpablo/CLionProjects/Battlespace -I/home/juanpablo/CLionProjects/Battlespace/third-party/include -I/usr/include/SFML
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir
 
 build CMakeFiles/untitled.dir/Button.cpp.o: CXX_COMPILER__untitled_Debug /home/juanpablo/CLionProjects/Battlespace/Button.cpp || cmake_object_order_depends_target_untitled
   DEP_FILE = CMakeFiles/untitled.dir/Button.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
-  INCLUDES = -I/usr/include/SFML
+  INCLUDES = -I/home/juanpablo/CLionProjects/Battlespace/cmake-build-debug -I/home/juanpablo/CLionProjects/Battlespace -I/home/juanpablo/CLionProjects/Battlespace/third-party/include -I/usr/include/SFML
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir
 
@@ -113,9 +159,9 @@ build CMakeFiles/untitled.dir/Button.cpp.o: CXX_COMPILER__untitled_Debug /home/j
 #############################################
 # Link the executable untitled
 
-build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.cpp.o CMakeFiles/untitled.dir/Juego.cpp.o CMakeFiles/untitled.dir/Jugador.cpp.o CMakeFiles/untitled.dir/Bullet.cpp.o CMakeFiles/untitled.dir/BulletCollector.cpp.o CMakeFiles/untitled.dir/Enemigo.cpp.o CMakeFiles/untitled.dir/ListaEnlazada.cpp.o CMakeFiles/untitled.dir/Button.cpp.o
+build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.cpp.o CMakeFiles/untitled.dir/Juego.cpp.o CMakeFiles/untitled.dir/Jugador.cpp.o CMakeFiles/untitled.dir/Bullet.cpp.o CMakeFiles/untitled.dir/BulletCollector.cpp.o CMakeFiles/untitled.dir/Enemigo.cpp.o CMakeFiles/untitled.dir/ListaEnlazada.cpp.o CMakeFiles/untitled.dir/Button.cpp.o | libserial.a || libserial.a
   FLAGS = -g
-  LINK_LIBRARIES = -lsfml-system  -lsfml-window  -lsfml-graphics
+  LINK_LIBRARIES = -lsfml-system  -lsfml-window  -lsfml-graphics  libserial.a  -lrt
   OBJECT_DIR = CMakeFiles/untitled.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -148,6 +194,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build serial: phony libserial.a
+
 # =============================================================================
 # Folder targets.
 
@@ -156,7 +204,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/juanpablo/CLionProjects/Battlespace/cmake-build-debug
 
-build all: phony untitled
+build all: phony libserial.a untitled
 
 # =============================================================================
 # Built-in targets

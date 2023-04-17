@@ -27,7 +27,6 @@ void Juego::initVars(std::string dif){
         vel_enemigo = 3;
         this->cargaOleada(oleadas3);
     }
-
     this->vel_jugador = 3;
     this->spawn_delay = 0.2;
     this->spawn_delay *= CLOCKS_PER_SEC;
@@ -273,6 +272,12 @@ void Juego::render() {
         }
     }
     this->window->display();
+}
+
+std::string Juego::retornaOleada() {
+    std::string str = std::to_string(5 - oleada_actual);
+    str += "\n";
+    return str;
 }
 
 
