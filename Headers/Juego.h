@@ -42,16 +42,19 @@ private:
     int oleada_actual;
     clock_t enemy_clock;
     clock_t bullet_clock;
-    Oleada oleadas[5] = {Oleada(5,0,0,10), Oleada(4,3,0,20), Oleada(5,2,2,25), Oleada(5,4,4,40), Oleada(5,5,5,45)};
+    int dificultad;
+    Oleada oleadas1[5] = {Oleada(5,0,0,10), Oleada(4,3,0,20), Oleada(5,2,2,25), Oleada(5,4,4,40), Oleada(5,5,5,45)};
+    Oleada oleadas2[5] = {Oleada(5,0,0,10), Oleada(4,3,0,20), Oleada(5,2,2,25), Oleada(5,4,4,40), Oleada(5,5,5,45)};
+    Oleada oleadas3[5] = {Oleada(5,0,0,10), Oleada(4,3,0,20), Oleada(5,2,2,25), Oleada(5,4,4,40), Oleada(5,5,5,45)};
     //Funciones privadas
-    void initVars();
+    void initVars(std::string dif);
     void initWindow();
 public:
     //Constructor/Destructor
     /**
      * Inicializa las variables del juego
      */
-    Juego();
+    Juego(std::string dificultad);
 
     /**
      * Elimina ventana
@@ -69,7 +72,7 @@ public:
 
     void recargaBalas();
 
-    void cargaOleada();
+    void cargaOleada(Oleada* oleadas);
 
     void cargaEnemigos(int enemigo1, int enemigo2, int enemigo3);
 

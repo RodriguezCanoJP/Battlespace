@@ -98,6 +98,13 @@ build CMakeFiles/untitled.dir/ListaEnlazada.cpp.o: CXX_COMPILER__untitled_Debug 
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir
 
+build CMakeFiles/untitled.dir/Button.cpp.o: CXX_COMPILER__untitled_Debug /home/juanpablo/CLionProjects/Battlespace/Button.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles/untitled.dir/Button.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I/usr/include/SFML
+  OBJECT_DIR = CMakeFiles/untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles/untitled.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled
@@ -106,7 +113,7 @@ build CMakeFiles/untitled.dir/ListaEnlazada.cpp.o: CXX_COMPILER__untitled_Debug 
 #############################################
 # Link the executable untitled
 
-build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.cpp.o CMakeFiles/untitled.dir/Juego.cpp.o CMakeFiles/untitled.dir/Jugador.cpp.o CMakeFiles/untitled.dir/Bullet.cpp.o CMakeFiles/untitled.dir/BulletCollector.cpp.o CMakeFiles/untitled.dir/Enemigo.cpp.o CMakeFiles/untitled.dir/ListaEnlazada.cpp.o
+build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.cpp.o CMakeFiles/untitled.dir/Juego.cpp.o CMakeFiles/untitled.dir/Jugador.cpp.o CMakeFiles/untitled.dir/Bullet.cpp.o CMakeFiles/untitled.dir/BulletCollector.cpp.o CMakeFiles/untitled.dir/Enemigo.cpp.o CMakeFiles/untitled.dir/ListaEnlazada.cpp.o CMakeFiles/untitled.dir/Button.cpp.o
   FLAGS = -g
   LINK_LIBRARIES = -lsfml-system  -lsfml-window  -lsfml-graphics
   OBJECT_DIR = CMakeFiles/untitled.dir

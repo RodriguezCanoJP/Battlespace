@@ -8,19 +8,28 @@
 
 const int MAX_DAMAGE = 50;
 
-void Juego::initVars(){
+void Juego::initVars(std::string dif){
     this->window = nullptr;
     this->oleada_actual = 0;
     this->bullet_vel = 2;
     this->bullet_dmg = MAX_DAMAGE;
-    this->bullet_qty = oleadas[oleada_actual].bullets;
-    this->vel_enemigo = 1;
+    this->bullet_qty = oleadas1[oleada_actual].bullets;
+    if(dif == "facil"){
+        vel_enemigo = 1;
+        this->cargaOleada(oleadas1);
+    }else if(dif == "medio"){
+        vel_enemigo = 2;
+        this->cargaOleada(oleadas2);
+    }else if(dif == "dificil"){
+        vel_enemigo = 3;
+        this->cargaOleada(oleadas3);
+    }
     this->vel_jugador = 3;
     this->spawn_delay = 0.2;
     this->spawn_delay *= CLOCKS_PER_SEC;
     this->shot_delay = 0.01;
     this->shot_delay *= CLOCKS_PER_SEC;
-    this->cargaOleada();
+
     this->bullet_qty = 0;
     this->enemy_clock = clock();
     this->bullet_clock = clock();
@@ -30,13 +39,14 @@ void Juego::initWindow() {
     this->video_mode.height = 400;
     this->video_mode.width = 800;
     this->window = new sf::RenderWindow(this->video_mode, "Battlespace");
-    this->window->setFramerateLimit(144);
+    this->window->setFramerateLimit(120);
 }
 
-Juego::Juego(){
-    this->initVars();
+Juego::Juego(std::string dificultad){
+    this->initVars(dificultad);
     this->initWindow();
 }
+
 Juego::~Juego() {
     delete this->window;
     Bullet::collector.liberar();
@@ -50,13 +60,13 @@ void Juego::pollEvents() {
     while(this->window->pollEvent(this->ev)){
         switch (this->ev.type) {
             case sf::Event::Closed:
-                this->window->close();this->cargaEnemigos(oleadas[oleada_actual].enemigo1, oleadas[oleada_actual].enemigo2, oleadas[oleada_actual].enemigo3);
+                this->window->close();
                 break;
         }
     }
 }
 
-void Juego::cargaOleada() {
+void Juego::cargaOleada(Oleada* oleadas) {
     if(!bullets_disponibles.empty()){
         for(int i=0; i < this->bullets_disponibles.size(); i++){
             delete bullets_disponibles[i];
@@ -147,7 +157,7 @@ void Juego::movEnemigos() {
         }
     }else{
         oleada_actual++;
-        cargaOleada();
+        cargaOleada(oleadas1);
     }
 
 }

@@ -3,7 +3,7 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(untitled main.cpp Juego.cpp Headers/Juego.h Jugador.cpp Headers/Jugador.h Bullet.cpp Headers/Bullet.h BulletCollector.cpp Headers/BulletCollector.h Enemigo.cpp Headers/Enemigo.h ListaEnlazada.cpp Headers/ListaEnlazada.h)
+add_executable(untitled main.cpp Juego.cpp Headers/Juego.h Jugador.cpp Headers/Jugador.h Bullet.cpp Headers/Bullet.h BulletCollector.cpp Headers/BulletCollector.h Enemigo.cpp Headers/Enemigo.h ListaEnlazada.cpp Headers/ListaEnlazada.h Button.cpp Headers/Button.h)
 
 target_include_directories(untitled PUBLIC /usr/include/SFML)
 target_link_libraries(untitled sfml-system sfml-window sfml-graphics)
