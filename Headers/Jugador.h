@@ -13,6 +13,7 @@ protected:
     sf::Sprite sprite; ///< objeto sprite
     int x; ///< posicion en el eje x
     int y; ///< posicion en el eje y
+
 public:
     ///Constructor/Destructor
     Jugador();
@@ -30,6 +31,17 @@ public:
      * @return int x
      */
     int getX();
+
+    /**
+     * diminuye la vida del jugador
+     */
+    void getHit();
+
+    /**
+     * retorna un valor booleano que indica si la vida del jugador es igual o menor a cero
+     * @return bool
+     */
+    bool isDead();
 
     /**
      * Retorna la posicion del jugador en el eje y

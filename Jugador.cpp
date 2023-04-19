@@ -7,6 +7,7 @@
 Jugador::Jugador() {
     this->x = 20;
     this->y = 200;
+    this->health = 3;
     this->texture.loadFromFile("/home/juanpablo/CLionProjects/Battlespace/Images/Jugador.png");
     this->sprite.setTexture(texture);
     this->sprite.setPosition(this->x, this->y);
@@ -36,4 +37,16 @@ int Jugador::getY() {
 
 sf::Sprite Jugador::getSprite() {
     return this->sprite;
+}
+
+void Jugador::getHit() {
+    this->health --;
+}
+
+bool Jugador::isDead() {
+    if(this->health <= 0){
+        return true;
+    }else{
+        return false;
+    }
 }

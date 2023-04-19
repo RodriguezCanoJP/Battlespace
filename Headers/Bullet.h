@@ -27,20 +27,17 @@ public:
      */
     void setPath(int y);
 
+    /**
+     * Actualiza la posicion de la bala segun su velocidad
+     * Si se trata de un tipo de nvae 3, ajusta su posicion en el eje y
+     * @param vel
+     */
     void update(float vel);
 
     /**
-     * Retorna la posicion en el eje x
-     * @return int x
+     * Retorna el valor de dano que causa la bala
+     * @return int this->dmg
      */
-    int getX();
-
-    /**
-     * Retorna la posicion en el eje y
-     * @return int y
-     */
-    int getY();
-
     int getDamage();
 
     /**
@@ -55,7 +52,7 @@ public:
      */
     bool outOfBounds();
 
-    ///Operadores
+    ///Sobrecarga de operadores
     void* operator new(size_t size);
     void operator delete(void* p);
 };

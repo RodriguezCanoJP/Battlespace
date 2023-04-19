@@ -24,15 +24,47 @@ public:
     Enemigo(int type);
     ~Enemigo();
 
+    /**
+     * retorna el puntero al siguiente enemigo en la lista
+     * @return puntero de Enemigo
+     */
     Enemigo* getNext();
+
+    /**
+     * retorna el puntero al enemigo anterior en la lista
+     * @return puntero Enemigo
+     */
     Enemigo* getPrevious();
+
+    /**
+     * cambia el puntero del siguiente enemigo en la lista
+     * @param enemigo puntero enemigo
+     */
     void setNext(Enemigo* enemigo);
+
+    /**
+     * cambia el puntero del enemigo anterior en la lista
+     * @param enemigo puntero
+     */
     void setPrevious(Enemigo* enemigo);
 
+    /**
+     * retorna un valor booleano que indica si el enemigo tiene la vida menor a cero
+     * @return bool
+     */
     bool getDead();
 
+    /**
+     * diminuye la vida del enemigo
+     * @param dmg
+     */
     void setDamage(int dmg);
 
+    /**
+     * inicializa la posicion del enemigo en la pantalla
+     * @param x
+     * @param y
+     */
     void setPos(int x, int y){
         this->x = x;
         this->y = y;
@@ -62,7 +94,15 @@ public:
      */
     sf::Sprite getSprite(); //retorna el sprite del jugador
 
+    /**
+     * retorna un valor booleano que indica si el enemigo ya se inicializo en la pantalla de juego
+     * @return bool
+     */
     bool getInit();
+
+    /**
+     * inicializa el enemigo en la pantalla de juego
+     */
     void setInit();
 };
 

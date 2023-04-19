@@ -128,7 +128,7 @@ void Juego::movJugador() {
 
 void Juego::setEnemigos(Enemigo* nave){
     srand(time(NULL));
-    nave->setPos(800, rand()%400);
+    nave->setPos(800, rand()%390);
     nave->setInit();
 }
 
@@ -139,6 +139,7 @@ void Juego::movEnemigos() {
             if(nave->getInit()){
                 nave->update(vel_enemigo);
                 if(nave->getX() <= 60){
+                    jugador.getHit();
                     lista_enemigos.eliminar(nave);
                     nave = lista_enemigos.getNave();
                 }else{
@@ -255,29 +256,50 @@ void Juego::update() {
 }
 
 void Juego::render() {
-    this->window->clear(sf::Color().Cyan);
-    this->window->draw(jugador.getSprite());
-    if(!this->bullets_usadas.empty()){
-        for(int i = 0; i < bullets_usadas.size(); i++) {
-            this->window->draw(bullets_usadas[i]->getSprite());
+    if(jugador.isDead()){
+        this->window->clear(sf::Color::Black);
+        sf::Text game_over_text;
+        sf::Font chivo;
+        chivo.loadFromFile("/home/juanpablo/CLionProjects/Battlespace/Fonts/Chivo_Mono/ChivoMono-Italic-VariableFont_wght.ttf");
+        game_over_text.setString("Game Over");
+        game_over_text.setFont(chivo);
+        game_over_text.setColor(sf::Color::White);
+        game_over_text.setPosition(300,200);
+        game_over_text.setCharacterSize(40);
+        this->window->draw(game_over_text);
+    }else{
+        this->window->clear(sf::Color().Cyan);
+        this->window->draw(jugador.getSprite());
+        if(!this->bullets_usadas.empty()){
+            for(int i = 0; i < bullets_usadas.size(); i++) {
+                this->window->draw(bullets_usadas[i]->getSprite());
+            }
         }
-    }
-    if(!this->lista_enemigos.isEmpty()){
-        Enemigo* nave = lista_enemigos.getNave();
-        for(int i = 0; i < lista_enemigos.ssize(); i++) {
-            this->window->draw(nave->getSprite());
-            if(nave->getNext() != nullptr){
-                nave = nave->getNext();
+        if(!this->lista_enemigos.isEmpty()){
+            Enemigo* nave = lista_enemigos.getNave();
+            for(int i = 0; i < lista_enemigos.ssize(); i++) {
+                this->window->draw(nave->getSprite());
+                if(nave->getNext() != nullptr){
+                    nave = nave->getNext();
+                }
             }
         }
     }
     this->window->display();
 }
 
-std::string Juego::retornaOleada() {
+std::string Juego::retornaOleada() const {
     std::string str = std::to_string(5 - oleada_actual);
     str += "\n";
     return str;
+}
+
+void Juego::cambiaVelocidad(int i) {
+    this->bullet_vel = i;
+}
+
+bool Juego::isPlayerDead() {
+    return jugador.isDead();
 }
 
 

@@ -7,7 +7,7 @@
 
 
 clock_t now = clock();
-float write_delay = 0.15 * CLOCKS_PER_SEC;
+float write_delay = 0.1 * CLOCKS_PER_SEC;
 void foo(serial::Serial serial1 , Juego juego){
     serial1.write(juego.retornaOleada());
 }
@@ -85,16 +85,11 @@ int main() {
     }
     my_serial.flushOutput();
     Juego juego(dificultad);
-
-
     while (juego.running()) {
         if(clock() - now > write_delay){
             my_serial.write(juego.retornaOleada());
-            std::cout << clock() - now << "\n";
             now = clock();
         }
-
-        if(juego.)
         my_serial.flushOutput();
         juego.update();
         juego.render();
