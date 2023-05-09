@@ -27,13 +27,6 @@ void Bullet::update(float vel) {
     this->sprite.setPosition(this->x, this->y);
 }
 
-int Bullet::getX() {
-    return this->x;
-}
-
-int Bullet::getY() {
-    return this->y;
-}
 
 int Bullet::getDamage() {
     return this->dmg;

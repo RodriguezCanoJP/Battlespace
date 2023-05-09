@@ -10,6 +10,7 @@ const int MAX_DAMAGE = 50;
 
 void Juego::initVars(std::string dif){
     this->window = nullptr;
+    this->hit = false;
     this->oleada_actual = 0;
     this->bullet_vel = 2;
     this->bullet_dmg = MAX_DAMAGE;
@@ -140,6 +141,7 @@ void Juego::movEnemigos() {
                 nave->update(vel_enemigo);
                 if(nave->getX() <= 60){
                     jugador.getHit();
+                    this->hit = true;
                     lista_enemigos.eliminar(nave);
                     nave = lista_enemigos.getNave();
                 }else{
@@ -300,6 +302,12 @@ void Juego::cambiaVelocidad(int i) {
 
 bool Juego::isPlayerDead() {
     return jugador.isDead();
+}
+
+bool Juego::ishit() {
+    bool state = this->hit;
+    this->hit = false;
+    return state;
 }
 
 

@@ -88,7 +88,12 @@ int main() {
     while (juego.running()) {
         if(clock() - now > write_delay){
             my_serial.write(juego.retornaOleada());
+            my_serial.flushOutput();
             now = clock();
+        }
+        if(juego.ishit()) {
+            my_serial.write("S");
+            my_serial.flushOutput();
         }
         my_serial.flushOutput();
         juego.update();

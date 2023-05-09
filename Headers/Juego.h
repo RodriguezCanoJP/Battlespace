@@ -33,6 +33,7 @@ private:
     std::vector <Bullet*> bullets_usadas; ///< vector con objetos Bullet disparadas
     Jugador jugador; ///< Instancia de la nave del jugador
     ListaEnlazada lista_enemigos;
+    bool hit;
     float vel_jugador; ///< velocidad de la nave
     float vel_enemigo; ///< velocidad de las naves enemigas
     float bullet_vel; ///< velocidad de las balas
@@ -162,6 +163,8 @@ public:
     void reciclaBalas();
 
     bool isPlayerDead();
+
+    bool ishit();
 
     /**
      * llama a las otras funciones que son recurrentes a traves del juego
